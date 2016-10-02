@@ -16,10 +16,18 @@
         android:layout_margin="16dp"
         android:hint="@string/enter_something_about_yourself" />
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/externalText"
+        android:layout_gravity="center"
+        android:hint="@string/store_to_external_storage"
+        android:layout_margin="16dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/saveFile"
         android:id="@+id/saveFileButton"
-        android:layout_gravity="center" />
+        android:layout_gravity="bottom|center_horizontal" />
 </FrameLayout>

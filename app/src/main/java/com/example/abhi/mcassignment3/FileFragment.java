@@ -4,12 +4,14 @@ package com.example.abhi.mcassignment3;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
@@ -22,7 +24,9 @@ import java.io.FileOutputStream;
 public class FileFragment extends Fragment {
 
     String filename = "about_me";
+    String extfile = "ext_about_me";
     EditText aboutMeText;
+    EditText extText;
     public FileFragment() {
         // Required empty public constructor
     }
@@ -56,18 +60,24 @@ public class FileFragment extends Fragment {
         View view = getView();
         view.findViewById(R.id.saveFileButton).setOnClickListener(saveFileButtonListener);
         aboutMeText = (EditText) view.findViewById(R.id.aboutMeText);
+        extText = (EditText)view.findViewById(R.id.externalText);
+        String extAboutMe = null;
         String aboutme = null;
         try{
             FileInputStream inputStream = getActivity().openFileInput(filename);
             byte b[] = new byte[10000];
             inputStream.read(b);
             aboutme = new String(b, "UTF-8");
-
+            File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), extfile);
+            FileInputStream is = new FileInputStream(file);
+            inputStream.read(b);
+            extAboutMe = new String(b, "UTF-8");
         }catch (java.io.FileNotFoundException ex){}
         catch (Exception ex){
             ex.printStackTrace();
         }
         if(aboutme != null) aboutMeText.setText(aboutme);
+        if(extAboutMe != null) extText.setText(extAboutMe);
         Log.d("File", "Inside OnActivityCreated");
     }
 
@@ -82,7 +92,37 @@ public class FileFragment extends Fragment {
             }catch(Exception ex){
                 ex.printStackTrace();
             }
+            File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), extfile);
+            if (!file.mkdirs()) {
+                Log.d("File", "Directory not created");
+            }
+            try {
+                FileOutputStream os = new FileOutputStream(file);
+                os.write(extText.getText().toString().getBytes());
+                os.close();
+            }catch(Exception ex){
+
+            }
+
             Log.d("File", "Inside saveFileButtonListener");
         }
     };
+
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
 }
