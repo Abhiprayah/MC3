@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.abhi.mcassignment3.FileFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/aboutMeText"
+        android:layout_gravity="top"
+        android:layout_margin="16dp"
+        android:hint="@string/enter_something_about_yourself" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveFile"
+        android:id="@+id/saveFileButton"
+        android:layout_gravity="center" />
+</FrameLayout>

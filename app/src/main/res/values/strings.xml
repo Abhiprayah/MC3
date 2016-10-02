@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MCAssignment3</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="personal">Personal</string>
+    <string name="about_me">About me</string>
+    <string name="contacts">Contacts</string>
+    <string name="save">Save</string>
+    <string name="enter_something_about_yourself">Enter something about yourself</string>
+    <string name="saveFile">Save</string>
+    <string name="enter_something_about_yourself1">Enter something about yourself</string>
+    <string name="your_name">Your name</string>
+    <string name="your_contact_number">Your contact number</string>
+    <string name="enter_contact_name">Enter contact name</string>
+    <string name="enter_contact_nmber">Enter contact number</string>
+    <string name="insert">Save</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="view">View</string>
+    <string name="no_contacts">No Contacts</string>
+</resources>
